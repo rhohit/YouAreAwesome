@@ -1,25 +1,18 @@
-//
-//  ContentView.swift
-//  YouAreAwesome
-//
-//  Created by ro on 10/22/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    @State private var message = "I am a Programmer!"
+    @State private var message = ""
+    @State private var symbolName = ""
+   // @State private var buttonState = true
+    
     var body: some View {
-        
         VStack {
-            
             Spacer()
             
-            Image(systemName: "swift")
+            Image(systemName: symbolName)
                 .resizable()
                 .scaledToFit()
                 .foregroundStyle(.orange)
-                .frame(width: 200, height: 200)
             
             Text(message)
                 .font(.largeTitle)
@@ -28,27 +21,29 @@ struct ContentView: View {
             Spacer()
             
             HStack {
-                Button("Awesome!") {
-                    message = "Awesome!"
+                Button("Press Me") {
+                    //               buttonState.toggle() // Toggle the state
+                    //    if buttonState {
+                    let message1 = "You are Awesome!"
+                    let message2 = "You are Great!"
+                    
+                    if message == message1 {
+                        message = message2
+                        symbolName = "sun.max.fill"
+                    } else {
+                        message = message1
+                        symbolName = "lightbulb" // Change to the desired symbol
+                    }
                 }
-                
-                Button("Great!") {
-                    message = "Great!"
-                }
-                
+                .buttonStyle(.borderedProminent)
+                .font(.title2)
+                .tint(.orange)
             }
-            //added one place to change the button styling
-            .buttonStyle(.borderedProminent)
-            .font(.title2)
-            .tint(.orange)
+            .padding()
         }
-        //New Stuff here
-        .padding()
-        
     }
 }
 
 #Preview {
     ContentView()
 }
-
