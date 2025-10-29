@@ -26,14 +26,19 @@ struct ContentView: View {
                     //    if buttonState {
                     let message1 = "You are Awesome!"
                     let message2 = "You are Great!"
+                    let symbolName1 = "hand.thumbsup"
+                    let symbolName2 = "sun.max.fill"
                     
-                    if message == message1 {
-                        message = message2
-                        symbolName = "sun.max.fill"
-                    } else {
-                        message = message1
-                        symbolName = "lightbulb" // Change to the desired symbol
-                    }
+                     
+                    message = ( message == message1 ? message2 : message1) // using ternary operator
+                    symbolName = (symbolName == symbolName1 ? symbolName2 : symbolName1 )
+//                    if message == message1 {
+//                        message = message2
+//                        symbolName = imageString2
+//                    } else {
+//                        message = message1
+//                        symbolName = imageString1// Change to the desired symbol
+//                    }
                 }
                 .buttonStyle(.borderedProminent)
                 .font(.title2)
@@ -47,3 +52,4 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
