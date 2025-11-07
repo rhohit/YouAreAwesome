@@ -2,47 +2,56 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var message = ""
-    @State private var symbolName = ""
-   // @State private var buttonState = true
+    @State private var imageName = ""
+    @State private var imageNumber = 0
+    @State private var messageNumber = 0
+    // @State private var buttonState = true
     
     var body: some View {
+        
+        
         VStack {
-            Spacer()
-            
-            Image(systemName: symbolName)
-                .resizable()
-                .scaledToFit()
-                .foregroundStyle(.orange)
             
             Text(message)
                 .font(.largeTitle)
-                .fontWeight(.ultraLight)
+                .fontWeight(.heavy)
+                .foregroundStyle(.red)
+                .multilineTextAlignment(.center)
+                .minimumScaleFactor(0.5)
+                .frame(height: 100)
+                .animation(.easeInOut(duration: 0.15), value: message)
             
+            Image (imageName)
+                .resizable()
+                .scaledToFit()
+                .clipShape(RoundedRectangle(cornerRadius: 30))
+                .shadow(radius: 30)
+                .animation(.default, value: imageName)
+                        
             Spacer()
             
             HStack {
-                Button("Press Me") {
-                    //               buttonState.toggle() // Toggle the state
-                    //    if buttonState {
-                    let message1 = "You are Awesome!"
-                    let message2 = "You are Great!"
-                    let symbolName1 = "hand.thumbsup"
-                    let symbolName2 = "sun.max.fill"
+                Button("Show Message") {
                     
-                     
-                    message = ( message == message1 ? message2 : message1) // using ternary operator
-                    symbolName = (symbolName == symbolName1 ? symbolName2 : symbolName1 )
-//                    if message == message1 {
-//                        message = message2
-//                        symbolName = imageString2
-//                    } else {
-//                        message = message1
-//                        symbolName = imageString1// Change to the desired symbol
-//                    }
+                    let messages = ["You are Awesome!", "When the Genius Bar needs help, they call you!",
+                                    "You are great!",
+                                    "You are fantastic!",
+                                    "Fabulous? is that you?", "You make me Smile!" ]
+                    message = messages[messageNumber]
+                    messageNumber += 1
+                    if messageNumber == messages.count{
+                        messageNumber = 0
+                    }
+                    imageName = "image\(imageNumber)"
+                    imageNumber += 1
+                    if imageNumber > 9 {
+                        imageNumber = 0
+                        
+                    }
                 }
                 .buttonStyle(.borderedProminent)
                 .font(.title2)
-                .tint(.orange)
+                
             }
             .padding()
         }
